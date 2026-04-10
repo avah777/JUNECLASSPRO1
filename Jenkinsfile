@@ -5,19 +5,19 @@ pipeline{
     }
 	agent any
       stages{
-           stage('Checkout'){
+           stage('Checkout with slave2'){
               steps{
 		 echo 'cloning..'
                  git 'https://github.com/avah777/JUNECLASSPRO1.git'
               }
           }
-          stage('Compile'){
+          stage('Compile with slave1'){
               steps{
                   echo 'compiling..'
                   sh 'mvn compile'
 	      }
           }
-          stage('CodeReview'){
+          stage('CodeReview with slave2'){
               steps{
 		    
 		  echo 'codeReview'
@@ -25,7 +25,7 @@ pipeline{
               }
           }
           
-          stage('Package'){
+          stage('Package with master'){
               steps{
                   sh 'mvn package'
               }
